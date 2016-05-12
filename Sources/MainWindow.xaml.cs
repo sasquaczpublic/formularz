@@ -33,13 +33,15 @@ namespace test
             public string input;
             public bool inputChanged;
             public typesValidation type;
+            public int maxLength;
 
-            public void set(string inputLabel, string startText, typesValidation validation = typesValidation.mixed)
+            public void set(string inputLabel, string startText, typesValidation validation = typesValidation.mixed, int setLength = 300)
             {
                 label = inputLabel;
                 input = startText;
                 inputChanged = false;
                 type = validation;
+                maxLength = setLength;
             }
         }
 
@@ -54,15 +56,16 @@ namespace test
             errorMsg = "";
             screenId = 0;
 
-            screens[0].set("Imię:", "Tutaj wpisz swoje imię", typesValidation.letters);
-            screens[1].set("Nazwisko:", "Tutaj wpisz swoje nazwisko", typesValidation.letters);
-            screens[2].set("Telefon:", "Tutaj wpisz swój numer telefonu", typesValidation.phone);
-            screens[3].set("Adres:", "Tutaj wpisz swój adres");
+            screens[0].set("Imię:", "Tutaj wpisz swoje imię", typesValidation.letters, 20);
+            screens[1].set("Nazwisko:", "Tutaj wpisz swoje nazwisko", typesValidation.letters, 30);
+            screens[2].set("Numer telefonu:", "Tutaj wpisz swój numer telefonu", typesValidation.phone, 9);
+            screens[3].set("Adres zamieszkania:", "Tutaj wpisz swój adres");
 
             InitializeComponent();
 
             lInput.Content = screens[screenId].label;
             tbInput.Text = screens[screenId].input;
+            tbInput.MaxLength = screens[screenId].maxLength;
             tbInput.Focus();
             tbInput.SelectAll();
         }
@@ -98,22 +101,17 @@ namespace test
                 msgError.Visibility = Visibility.Visible;
                 msgError.Text = errorMsg;
             }
+            tbInput.Focus();
             tbInput.SelectAll();
         }
 
         private void prevScreen()
         {
-            if (validate())
-            {
-                saveInput();
-                screenId--;
-                changeScreen();
-            }
-            else
-            {
-                msgError.Visibility = Visibility.Visible;
-                msgError.Text = errorMsg;
-            }
+            saveInput();
+            screenId--;
+            changeScreen();
+
+            tbInput.Focus();
             tbInput.SelectAll();
         }
 
@@ -142,6 +140,7 @@ namespace test
                     lInput.Content = screens[screenId].label;
                     tbInput.Text = screens[screenId].input;
                     msgError.Visibility = Visibility.Hidden;
+                    tbInput.MaxLength = screens[screenId].maxLength;
                     break;
             }
         }
@@ -162,7 +161,7 @@ namespace test
             {
                 case typesValidation.letters:
                     errorMsg = "Formularz akceptuje tylko ciąg liter";
-                    return tbInput.Text.All(Char.IsLetter);
+                    return tbInput.Text.All(sign => Char.IsLetter(sign) || sign==' ' || sign=='-');
                 case typesValidation.phone:
                     errorMsg = "Formularz akceptuje tylko ciąg cyfr";
                     return tbInput.Text.All(sign => Char.IsDigit(sign) || sign=='+');

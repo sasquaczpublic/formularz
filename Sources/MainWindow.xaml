@@ -14,7 +14,7 @@
 
         </Grid>
         <Grid x:Name="gCon" Visibility="Hidden">
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="30,43,30,0" TextWrapping="Wrap" Text="Twoje dane zostaną wyświetlone w kolejnym ekranie. &#x0a;&#x0a;W każdej chwili możesz przenieść się do poprzednich ekranów, naciskając przycisk wstecz." VerticalAlignment="Top"/>
+            <TextBlock x:Name="txConfirm" HorizontalAlignment="Center" Margin="30,43,30,0" TextWrapping="Wrap" Text="Twoje dane zostaną wyświetlone w kolejnym ekranie. &#x0a;&#x0a;W każdej chwili możesz przenieść się do poprzednich ekranów, naciskając przycisk wstecz." VerticalAlignment="Top" />
 
 
         </Grid>
@@ -25,10 +25,10 @@
             <Label x:Name="lOut1" Content="Nazwisko:" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="tbOut1" HorizontalAlignment="Left" Height="23" Margin="10,85,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="247" IsEnabled="False"/>
 
-            <Label x:Name="lOut2" Content="Telefon:" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lOut2" Content="Numer telefonu:" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="tbOut2" HorizontalAlignment="Left" Height="23" Margin="10,134,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="247" IsEnabled="False"/>
 
-            <Label x:Name="lOut3" Content="Adres:" HorizontalAlignment="Left" Margin="262,10,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lOut3" Content="Adres zamieszkania:" HorizontalAlignment="Left" Margin="262,10,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="tbOut3" HorizontalAlignment="Left" Height="121" Margin="262,36,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
 
 
